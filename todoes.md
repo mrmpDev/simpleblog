@@ -1,0 +1,22 @@
+# features
+
+- [ ] احراز هویت
+    - packages
+        - ui:bootstrap
+        - breeze:tailwind
+        - fortify
+        - jetstream:tailwind inertia/livewire SaaS
+        - passport OAuth2
+        - sanctum token/SPA
+    - [ ] ثبت نام
+    - [ ] ورود
+- [ ] نقش کاربران
+- [ ] مدیریت کاربران
+- [ ] مدیریت دسته بندی
+- [ ] مدیریت نوشته ها
+- [ ] مدیریت نظرات ها
+- [ ] ویرایش پروفایل
+- [ ] نمایش پست ها در صفحه اصلی
+- [ ] پیدا کردن پست ها بر اساس دسته بندی
+- [ ] سرچ بین پست ها
+- [ ] نمایش پست++
