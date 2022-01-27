@@ -1,55 +1,20 @@
-{{--<!DOCTYPE html>--}}
-{{--<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">--}}
-{{--    <head>--}}
-{{--        <meta charset="utf-8">--}}
-{{--        <meta name="viewport" content="width=device-width, initial-scale=1">--}}
-{{--        <meta name="csrf-token" content="{{ csrf_token() }}">--}}
-
-{{--        <title>{{ config('app.name', 'Laravel') }}</title>--}}
-
-{{--        <!-- Fonts -->--}}
-{{--        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">--}}
-
-{{--        <!-- Styles -->--}}
-{{--        <link rel="stylesheet" href="{{ asset('css/app.css') }}">--}}
-
-{{--        <!-- Scripts -->--}}
-{{--        <script src="{{ asset('js/app.js') }}" defer></script>--}}
-{{--    </head>--}}
-{{--    <body class="font-sans antialiased">--}}
-{{--        <div class="min-h-screen bg-gray-100">--}}
-{{--            @include('layouts.navigation')--}}
-
-{{--            <!-- Page Heading -->--}}
-{{--            <header class="bg-white shadow">--}}
-{{--                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">--}}
-{{--                    {{ $header }}--}}
-{{--                </div>--}}
-{{--            </header>--}}
-
-{{--            <!-- Page Content -->--}}
-{{--            <main>--}}
-{{--                {{ $slot }}--}}
-{{--            </main>--}}
-{{--        </div>--}}
-{{--    </body>--}}
-{{--</html>--}}
-    <!doctype html>
+<!doctype html>
 <html lang="fa">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0;">
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>وبلاگ {{$title ?? ''}}</title>
+    <title>وبلاگ {{ $title ?? '' }}</title>
     <meta name="description"
           content="وب آموز وبسایت آموزش برنامه نویسی وب و موبایل ، جاوااسکریپت ، لاراول ، react ، آموزش node js با مجرب ترین مدرسین">
     <meta name="keywords"
           content="آموزش طراحی سایت,آموزش برنامه نویسی,طراحی وب,ساخت وب سایت,آموزش git,آموزش لاراول,آموزش php,آموزش react,آموزش پی اچ پی,آموزش laravel,آموزش جاوا اسکریپت,آموزش ساخت وب سایت,آموزش mvc,آموزش React Native,وب آموز , وب اموز">
     <link rel="canonical" href="https://webamooz.net"/>
-    <link rel="stylesheet" href="{{ asset('blog/css/fonts.css') }}">
-    <link rel="stylesheet" href="{{ asset('blog/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('blog/css/responsive.css') }}" media="(max-width:991px)">
+    <link rel="stylesheet" href="{{ asset('/blog/css/fonts.css') }}">
+    <link rel="stylesheet" href="{{ asset('/blog/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/blog/panel/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/blog/css/responsive.css') }}" media="(max-width:991px)">
     <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/css/swiper.min.css">-->
 </head>
 <body>
@@ -58,7 +23,7 @@
         <div class="c-header__row ">
             <div class="c-header__right">
                 <div class="logo">
-                    <a href="" class="logo__img"></a>
+                    <a href="{{ route('landing') }}" class="logo__img"></a>
                 </div>
                 <div class="c-search width-100 ">
                     <form action="" class="c-search__form position-relative">
@@ -73,10 +38,33 @@
                     <div class="c-header__button-search "></div>
                     <div class="c-header__button-nav"></div>
                 </div>
-                <div class="c-button__login-regsiter">
-                    <div><a class="c-button__link c-button--login" href="{{ route('login') }}">ورود</a></div>
-                    <div><a class="c-button__link c-button--register" href="{{ route('register') }}">ثبت نام</a></div>
-                </div>
+                @guest
+                    <div class="c-button__login-regsiter">
+                        <div><a class="c-button__link c-button--login" href="{{ route('login') }}">ورود</a></div>
+                        <div><a class="c-button__link c-button--register" href="{{ route('register') }}">ثبت نام</a></div>
+                    </div>
+                @else
+                    <div style="width: 180px;">
+                        <div class="dropdown-select wide" id="dropdown-user" onclick="toggleUserDropdown()" tabindex="0">
+                        <span class="current">
+                        {{ auth()->user()->name }}
+                        </span>
+                            <div class="list">
+                                <ul>
+                                    <li class="option" data-value="0" data-display-text="" tabindex="0">
+                                        <a href="{{ route('profile') }}">پروفایل</a>
+                                    </li>
+                                    <li class="option " data-value="0" data-display-text="" tabindex="0" onclick="logoutUser()">
+                                        خروج
+                                    </li>+
+                                </ul>
+                                <form action="{{ route('logout') }}" method="POST" id="logout-form">
+                                    @csrf
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                @endguest
             </div>
         </div>
     </div>
@@ -195,9 +183,17 @@
     <!--    </div>-->
 </footer>
 <div class="overlay"></div>
-<script src="{{ asset('blog/js/jquery-3.4.1.min.js') }}"></script>
-<script src="{{ asset('blog/js/js.js') }}"></script>
+<script src="{{ asset('/blog/js/jquery-3.4.1.min.js') }}"></script>
+<script src="{{ asset('/blog/js/js.js') }}"></script>
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.min.js"></script>-->
+<script>
+    function toggleUserDropdown() {
+        document.getElementById('dropdown-user').classList.toggle('open')
+    }
+    function logoutUser() {
+        document.getElementById('logout-form').submit();
+    }
+</script>
 
 </body>
 </html>
