@@ -747,6 +747,12 @@ textarea {
     margin-right: -6px;
 }
 
+.profile__name_and_role {
+    width: 100%;
+    margin:auto;
+    font-size: 15px;
+}
+
 .box__camera.default__avatar {
     top: 76% !important;
 }
