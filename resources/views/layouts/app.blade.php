@@ -56,7 +56,7 @@
                                     </li>
                                     <li class="option " data-value="0" data-display-text="" tabindex="0" onclick="logoutUser()">
                                         خروج
-                                    </li>+
+                                    </li>
                                 </ul>
                                 <form action="{{ route('logout') }}" method="POST" id="logout-form">
                                     @csrf

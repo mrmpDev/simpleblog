@@ -29,7 +29,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'string', 'email'],
+            'email' => ['required', 'string'],
             'password' => ['required', 'string'],
         ];
     }
@@ -43,9 +43,18 @@ class LoginRequest extends FormRequest
      */
     public function authenticate()
     {
-        $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        $this->ensureIsNotRateLimited();
+//        dd($this->only('email', 'password'));
+
+        $inputType = filter_var($this->email, FILTER_VALIDATE_EMAIL) ? 'email' : 'mobile';
+
+        if (! Auth::attempt(
+            [
+                $inputType => $this->email,
+                'password' => $this->password
+            ],
+            $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
