@@ -8,7 +8,6 @@
                 <h1 class="sign-page__title">ثبت نام در وب‌سایت</h1>
 
                 <form class="sign-page__form">
-                    <form action="">
                         <input type="text" class="text text--right" placeholder="نام  و نام خانوادگی">
                         <input type="text" class="text text--left" placeholder="شماره موبایل">
                         <input type="text" class="text text--left" placeholder="ایمیل">
@@ -24,7 +23,6 @@
 
                         </div>
                     </form>
-                </form>
             </div>
         </div>
     </main>
