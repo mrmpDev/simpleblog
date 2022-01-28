@@ -12,7 +12,7 @@
 <body>
 <div class="sidebar__nav border-top border-left  ">
     <span class="bars d-none padding-0-18"></span>
-    <a class="header__logo  d-none" href="https://webamooz.net"></a>
+    <a class="header__logo  d-none" href="https://mrmp.ir"></a>
     <div class="profile__info border cursor-pointer text-center">
         <div class="avatar__img"><img src="{{ asset('blog/panel/img/pro.jpg') }}" class="avatar___img">
             <input type="file" accept="image/*" class="hidden avatar-img__input">
@@ -23,21 +23,14 @@
         <span class="profile__name_and_role">نقش : {{ auth()->user()->getRoleInFarsi() }}</span>
     </div>
 
-    <ul>
-        <li class="item-li i-dashboard is-active"><a href="index.html">پیشخوان</a></li>
-        <li class="item-li i-users"><a href="users.html"> کاربران</a></li>
-        <li class="item-li i-categories"><a href="categories.html">دسته بندی ها</a></li>
-        <li class="item-li i-articles"><a href="articles.html">مقالات</a></li>
-        <li class="item-li i-comments"><a href="comments.html"> نظرات</a></li>
-        <li class="item-li i-user__inforamtion"><a href="user-information.html">اطلاعات کاربری</a></li>
-    </ul>
+    @includeIf('_partials.panel-sidebar')
 
 </div>
 <div class="content">
     <div class="header d-flex item-center bg-white width-100 border-bottom padding-12-30">
         <div class="header__right d-flex flex-grow-1 item-center">
             <span class="bars"></span>
-            <a class="header__logo" href="https://webamooz.net"></a>
+            <a class="header__logo" href="https://mrmp.ir"></a>
         </div>
         <div class="header__left d-flex flex-end item-center margin-top-2">
             <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">خروج</a>

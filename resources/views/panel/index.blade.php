@@ -1,10 +1,10 @@
 <x-panel-layout>
     <x-slot name="title">
-         | داشبورد
+        | داشبورد
     </x-slot>
     <div class="breadcrumb">
         <ul>
-            <li><a href="index.html" title="پیشخوان">پیشخوان</a></li>
+            <li><a href="{{ route('dashboard') }}" title="پیشخوان">پیشخوان</a></li>
         </ul>
     </div>
     <div class="main-content">
