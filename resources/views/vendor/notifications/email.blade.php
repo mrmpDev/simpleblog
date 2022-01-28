@@ -44,7 +44,7 @@
 {{ $salutation }}
 @else
 با تشکر,<br>
-تیم وب آموز
+تیم بلاگینی
 @endif
 
 {{-- Subcopy --}}
