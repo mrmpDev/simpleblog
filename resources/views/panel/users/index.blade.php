@@ -1,12 +1,14 @@
 <x-panel-layout>
     <x-slot name="title">
-        | مدیریت کاربران
+        - مدیریت کاربران
     </x-slot>
-
+    <x-slot name="styles">
+        <link rel="stylesheet" href="{{ asset('blog/css/style.css') }}">
+    </x-slot>
     <div class="breadcrumb">
         <ul>
             <li><a href="{{ route('dashboard') }}">پیشخوان</a></li>
-            <li><a href="{{ route('users.index') }}">کاربران</a></li>
+            <li><a href="{{ route('users.index') }}" class="is-active">کاربران</a></li>
         </ul>
     </div>
     <div class="main-content font-size-13">
@@ -18,36 +20,54 @@
         </div>
         <div class="d-flex flex-space-between item-center flex-wrap padding-30 border-radius-3 bg-white">
         </div>
-        <div class="table__box">
+        <div class="bg-white table__box">
             <table class="table">
                 <thead role="rowgroup">
                 <tr role="row" class="title-row">
                     <th>شناسه</th>
                     <th>نام و نام خانوادگی</th>
                     <th>ایمیل</th>
+                    <th>موبایل</th>
                     <th>سطح کاربری</th>
                     <th>تاریخ عضویت</th>
-                    <th>وضعیت حساب</th>
                     <th>عملیات</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr role="row" class="">
-                    <td><a href="">1</a></td>
-                    <td><a href="">محمد نیکو</a></td>
-                    <td>programming@gmail.com</td>
-                    <td>کاربر عادی</td>
-                    <td>1399/11/11</td>
-                    <td class="text-error">تایید نشده</td>
-                    <td>
-                        <a href="" class="mlg-15" title="حذف">حذف</a>
-                        <a href="" class="mlg-15" title="تایید">تایید</a>
-                        <a href="" class="mlg-15" title="رد">رد</a>
-                        <a href="{{ route('users.edit',1) }}">ویرایش</a>
-                    </td>
-                </tr>
+                @foreach($users as $user)
+                    <tr role="row" class="">
+                        <td>{{ $user->id }}</td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->mobile }}</td>
+                        <td>{{ $user->getRoleInFarsi() }}</td>
+                        <td>{{ $user->getCreatedAtInJalali() }}</td>
+                        <td>
+                            @if(auth()->user()->id !== $user->id && $user->role !== 'admin')
+                                <a href="{{ route('users.destroy', $user->id) }}"
+                                   onclick="destroyUser(event, {{ $user->id }})" class="item-delete mlg-15"
+                                   title="حذف"></a>
+                            @endif
+                            <a href="{{ route('users.edit', $user->id) }}" class="item-edit " title="ویرایش"></a>
+                            <form action="{{ route('users.destroy', $user->id) }}" method="post"
+                                  id="destroy-user-{{ $user->id }}">
+                                @csrf
+                                @method('delete')
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
+            {{ $users->links() }}
         </div>
     </div>
+    <x-slot name="scripts">
+        <script>
+            function destroyUser(event, id) {
+                event.preventDefault();
+                document.getElementById(`destroy-user-${id}`).submit()
+            }
+        </script>
+    </x-slot>
 </x-panel-layout>

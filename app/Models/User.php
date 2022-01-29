@@ -21,7 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'mobile'
+        'mobile',
+        'role'
     ];
 
     /**
@@ -45,8 +46,19 @@ class User extends Authenticatable
 
     public function getRoleInFarsi()
     {
-        if($this->role === 'user') return 'کاربر عادی';
-        if($this->role === 'author') return 'نویسنده';
-        if($this->role === 'admin') return 'مدیر';
+        if ($this->role === 'user') {
+            return 'کاربر عادی';
+        }
+        if ($this->role === 'author') {
+            return 'نویسنده';
+        }
+        if ($this->role === 'admin') {
+            return 'مدیر';
+        }
+    }
+
+    public function getCreatedAtInJalali()
+    {
+        return verta($this->created_at)->format('Y/m/d');
     }
 }

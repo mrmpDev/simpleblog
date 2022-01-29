@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0;">
     <title> پنل وبلاگ بلاگینی {{ $title ?? '' }}</title>
+    {{ $styles ?? '' }}
     <link rel="stylesheet" href="{{ asset('blog/panel/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('blog/panel/css/responsive_991.css') }}" media="(max-width:991px)">
     <link rel="stylesheet" href="{{ asset('blog/panel/css/responsive_768.css') }}" media="(max-width:768px)">
@@ -33,13 +34,15 @@
             <a class="header__logo" href="https://mrmp.ir"></a>
         </div>
         <div class="header__left d-flex flex-end item-center margin-top-2">
-            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">خروج</a>
+            <a href="{{ route('logout') }}"
+               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">خروج</a>
             <form action="{{ route('logout') }}" method="POST" id="logout-form">@csrf</form>
         </div>
     </div>
     {{ $slot }}
 </div>
-</body>
 <script src="{{ asset('blog/panel/js/jquery-3.4.1.min.js') }}"></script>
 <script src="{{ asset('blog/panel/js/js.js') }}"></script>
+{{ $scripts ??  '' }}
+</body>
 </html>
