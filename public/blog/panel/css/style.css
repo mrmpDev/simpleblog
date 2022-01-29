@@ -1876,9 +1876,17 @@ span.tagRemove:hover {
     margin-left: 5px;
     margin-bottom: 10px;
 }
-.notification__box:first-of-type  p{
+
+.notification__box:first-of-type p {
     padding: 15px 10px;
 }
-.notification__box .title__noti{
+
+.notification__box .title__noti {
     padding: 15px 0;
+}
+
+.error_message {
+    text-align: right;
+    color: #D8000C;
+    margin-bottom: 1rem;
 }

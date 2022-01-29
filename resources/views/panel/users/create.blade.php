@@ -13,19 +13,38 @@
     <div class="main-content font-size-13">
         <div class="row no-gutters  bg-white">
             <div class="col-12">
-                <p class="box__title">ساخت کاربر</p>
-                <form action="" class="padding-30" method="post">
-                    <input type="text" class="text" placeholder="نام و نام خانوادگی">
-                    <input type="text" class="text" placeholder="ایمیل">
-                    <input type="text" class="text" placeholder="شماره موبایل">
-                    <input type="text" class="text" placeholder="آی پی" value="102.111.11" disabled>
-                    <select name="" id="">
-                        <option value="0">کاربر عادی</option>
-                        <option value="1">مدرس</option>
-                        <option value="2">نویسنده</option>
-                        <option value="3">مدیر</option>
+                <p class="box__title">ایجاد کاربر کاربر</p>
+                <form action="{{ route('users.store') }}" class="padding-30" method="POST">
+                    @csrf
+                    <input name="name" type="text" class="text" placeholder="نام و نام خانوادگی">
+                    @error('name')
+                    <p class="error_message">
+                        {{ $message }}
+                    </p>
+                    @enderror
+                    <input name="email" type="email" class="text" placeholder="ایمیل">
+                    @error('email')
+                    <p class="error_message">
+                        {{ $message }}
+                    </p>
+                    @enderror
+                    <input name="mobile" type="text" class="text" placeholder="شماره موبایل">
+                    @error('mobile')
+                    <p class="error_message">
+                        {{ $message }}
+                    </p>
+                    @enderror
+                    <select name="role">
+                        <option value="user">کاربر عادی</option>
+                        <option value="author">نویسنده</option>
+                        <option value="admin">مدیر</option>
                     </select>
-                    <button class="btn btn-webamooz_net">ساخت</button>
+                    @error('role')
+                    <p class="error_message">
+                        {{ $message }}
+                    </p>
+                    @enderror
+                    <button class="btn btn-webamooz_net">ایجاد کاربر</button>
                 </form>
 
             </div>

@@ -12,15 +12,15 @@
                         <input name="email" type="text" class="text text--left" placeholder="شماره یا ایمیل">
 
                             @error('email')
-                                <p style="text-align: right; color: #D8000C; margin-bottom: 1rem">
+                                <p class="error_message">
                                     {{ $message }}
                                 </p>
                             @enderror
                         <input name="password" type="pass" class="text text--left" placeholder="رمز عبور">
 
                             @error('password')
-                            <p style="text-align: right; color: #D8000C; margin-bottom: 1rem">
-                                {{ $message }}
+                    <p class="error_message">
+                        {{ $message }}
                             </p>
                             @enderror
                         <label class="checkbox text--right">

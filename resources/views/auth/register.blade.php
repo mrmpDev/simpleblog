@@ -14,7 +14,7 @@
                     <div>
                         <input name="name" type="text" class="text text--right" placeholder="نام  و نام خانوادگی">
                         @error('name')
-                            <p style="text-align: right; color: #D8000C; margin-bottom: 1rem">
+                            <p class="error_message">
                                 {{ $message }}
                             </p>
                         @enderror
@@ -22,24 +22,24 @@
                     <div>
                         <input name="mobile" type="text" class="text text--left" placeholder="شماره موبایل">
                         @error('mobile')
-                            <p style="text-align: right; color: #D8000C; margin-bottom: 1rem">
-                                {{ $message }}
+                        <p class="error_message">
+                            {{ $message }}
                             </p>
                         @enderror
                     </div>
                     <div>
                         <input name="email" type="text" class="text text--left" placeholder="ایمیل">
                         @error('email')
-                            <p style="text-align: right; color: #D8000C; margin-bottom: 1rem">
-                                {{ $message }}
+                        <p class="error_message">
+                            {{ $message }}
                             </p>
                         @enderror
                     </div>
                     <div>
                         <input name="password" type="password" class="text text--left" placeholder="رمز عبور">
                         @error('password')
-                            <p style="text-align: right; color: #D8000C; margin-bottom: 1rem">
-                                {{ $message }}
+                        <p class="error_message">
+                            {{ $message }}
                             </p>
                         @enderror
                     </div>

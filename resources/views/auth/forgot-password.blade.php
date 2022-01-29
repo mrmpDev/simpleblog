@@ -12,7 +12,7 @@
                     @csrf
 
                     @error('email')
-                    <p style="text-align: right; color: #D8000C; margin-bottom: 1rem">
+                    <p class="error_message">
                         {{ $message }}
                     </p>
                     @enderror
