@@ -34,7 +34,7 @@
                         {{ $message }}
                     </p>
                     @enderror
-                    <select name="role">
+                    <select class="select" name="role">
                         <option value="user">کاربر عادی</option>
                         <option value="author">نویسنده</option>
                         <option value="admin">مدیر</option>

@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(1);
+        $users = User::paginate();
 
         return view('panel.users.index', compact('users'));
     }
@@ -47,6 +47,7 @@ class UserController extends Controller
         $data['password'] = Hash::make('password');
 
         User::create($data);
+        $request->session()->flash('status', 'کاربر به درستی ایجاد شد');
         return redirect()->route('users.index');
 
     }
@@ -74,7 +75,7 @@ class UserController extends Controller
     {
 
         $user->update($request->validated());
-
+        $request->session()->flash('status', 'اطلاعات کاربر به درستی ویرایش شد');
         return redirect()->route('users.index');
     }
 
@@ -84,9 +85,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Request $request, User $user)
     {
+        dd('salam');
         $user->delete();
+        $request->session()->flash('status', 'کاربر مدنظر به درستی حذف شد');
         return redirect()->route('users.index');
     }
 }

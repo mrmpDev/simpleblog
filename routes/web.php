@@ -30,13 +30,6 @@ Route::get('/profile', function () {
     return 'profile';
 })->name('profile');
 
-Route::middleware('auth')->resource('/panel/users', UserController::class)->except('show');
+Route::resource('/panel/users', UserController::class)->middleware('auth')->except(['show']);
 
 require __DIR__.'/auth.php';
-
-
-
-
-
-
-//Todo video gestamte 13

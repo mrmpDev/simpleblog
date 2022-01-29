@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0;">
     <title> پنل وبلاگ بلاگینی {{ $title ?? '' }}</title>
-    {{ $styles ?? '' }}
     <link rel="stylesheet" href="{{ asset('blog/panel/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('blog/panel/css/responsive_991.css') }}" media="(max-width:991px)">
     <link rel="stylesheet" href="{{ asset('blog/panel/css/responsive_768.css') }}" media="(max-width:768px)">
     <link rel="stylesheet" href="{{ asset('blog/panel/css/font.css') }}">
 </head>
 <body>
-<div class="sidebar__nav border-top border-left  ">
+<div class="sidebar__nav border-top border-left">
     <span class="bars d-none padding-0-18"></span>
     <a class="header__logo  d-none" href="https://mrmp.ir"></a>
     <div class="profile__info border cursor-pointer text-center">
@@ -41,8 +40,13 @@
     </div>
     {{ $slot }}
 </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+@if(Session::has('status'))
+    <script>
+        Swal.fire({title: "{{ session('status') }}", confirmButtonText: 'تایید', icon: 'success'})
+    </script>
+@endif
 <script src="{{ asset('blog/panel/js/jquery-3.4.1.min.js') }}"></script>
 <script src="{{ asset('blog/panel/js/js.js') }}"></script>
-{{ $scripts ??  '' }}
-</body>
 </html>

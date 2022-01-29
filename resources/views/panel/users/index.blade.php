@@ -45,11 +45,10 @@
                         <td>
                             @if(auth()->user()->id !== $user->id && $user->role !== 'admin')
                                 <a href="{{ route('users.destroy', $user->id) }}"
-                                   onclick="destroyUser(event, {{ $user->id }})" class="item-delete mlg-15"
-                                   title="حذف"></a>
+                                   onclick="destroyUser(event, {{ $user->id }})" class="mlg-15" title="">حذف</a>
                             @endif
-                            <a href="{{ route('users.edit', $user->id) }}" class="item-edit " title="ویرایش"></a>
-                            <form action="{{ route('users.destroy', $user->id) }}" method="post"
+                            <a href="{{ route('users.edit', $user->id) }}" class="mlg-15" title="">ویرایش</a>
+                            <form action="{{ route('users.destroy', $user->id) }}" method="POST"
                                   id="destroy-user-{{ $user->id }}">
                                 @csrf
                                 @method('delete')
@@ -66,7 +65,19 @@
         <script>
             function destroyUser(event, id) {
                 event.preventDefault();
-                document.getElementById(`destroy-user-${id}`).submit()
+                Swal.fire({
+                    title: 'ایا مطمئن هستید این کار را میخواهید حذف کنید؟',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: 'rgb(221, 51, 51)',
+                    cancelButtonColor: 'rgb(48, 133, 214)',
+                    confirmButtonText: 'بله حذف کن!',
+                    cancelButtonText: 'کنسل'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById(`destroy-user-${id}`).submit()
+                    }
+                })
             }
         </script>
     </x-slot>
