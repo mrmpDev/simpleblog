@@ -28,8 +28,8 @@ Route::get('/post/{id}', function ($id) {
 
 Route::get('/profile', function () {
     return 'profile';
-})->name('profile');
+})->middleware('auth')->name('profile');
 
-Route::resource('/panel/users', UserController::class)->middleware('auth')->except(['show']);
+Route::resource('/panel/users', UserController::class)->middleware(['auth', 'admin'])->except(['show']);
 
 require __DIR__.'/auth.php';
