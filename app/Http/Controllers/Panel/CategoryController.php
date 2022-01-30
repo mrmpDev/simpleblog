@@ -15,7 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('panel.categories.index');
+        $categories = Category::paginate();
+        $parentCategories = Category::where('category_id', null)->get();
+        return view('panel.categories.index', compact('parentCategories', 'categories'));
     }
 
 
@@ -27,7 +29,24 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'slug' => ['required', 'string', 'max:255', 'unique:categories'],
+            'category_id' => ['nullable', 'exists:categories,id']
+        ]);
+
+        Category::create($request->only(['name', 'slug', 'category_id']));
+        session()->flash('status', 'دسته بندی مورد نظر به درستی ایجاد شد');
+
+        return back();
+    }
+
+    public function edit(Category $category)
+    {
+
+        $parentCategories = Category::where('category_id', null)->where('id', '!=', $category->id)->get();
+        return view('panel.categories.edit', compact('category', 'parentCategories'));
     }
 
 
@@ -40,7 +59,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'category_id' => ['nullable', 'exists:categories,id']
+        ]);
+
+        $category->update($request->only('name', 'category_id'));
+        session()->flash('status', 'دسته بندی ویرایش شد');
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -51,6 +77,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        session()->flash('status', 'دسته بندی حذف شد');
+        return back();
     }
 }

@@ -5,6 +5,7 @@
     @if(auth()->user()->role === 'admin')
         <li class="item-li @if(request()->is('panel/users') || request()->is('panel/users/*')) is-active @endif"><a
                 href="{{ route('users.index') }}"> کاربران</a></li>
+
         <li class="item-li @if(request()->is('panel/categories') || request()->is('panel/categories/*')) is-active @endif">
             <a href="{{ route('categories.index') }}">دسته بندی ها</a></li>
     @endif
