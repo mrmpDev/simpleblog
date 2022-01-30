@@ -41,7 +41,6 @@
     </div>
     {{ $slot }}
 </div>
-</body>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 @if(Session::has('status'))
     <script>
@@ -50,4 +49,6 @@
 @endif
 <script src="{{ asset('blog/panel/js/jquery-3.4.1.min.js') }}"></script>
 <script src="{{ asset('blog/panel/js/js.js') }}"></script>
+{{ $scripts ?? '' }}
+</body>
 </html>
