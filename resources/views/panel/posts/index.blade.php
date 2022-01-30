@@ -2,6 +2,9 @@
     <x-slot name="title">
         | مدیریت مقالات
     </x-slot>
+    <x-slot name="styles">
+        <link rel="stylesheet" href="{{ asset('blog/css/style.css') }}">
+    </x-slot>
     <div class="breadcrumb">
         <ul>
             <li><a href="{{ route('dashboard') }}">پیشخوان</a></li>
@@ -38,28 +41,42 @@
                     <th>شناسه</th>
                     <th>عنوان</th>
                     <th>نویسنده</th>
-                    <th>متن</th>
                     <th>تاریخ ایجاد</th>
                     <th>عملیات</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr role="row" class="">
-                    <td><a href="">1</a></td>
-                    <td><a href="">فریم ورک لاراول چیست</a></td>
-                    <td>توفیق حمزئی</td>
-                    <td>فریم ورک لاراول یکی از فریم ورک های محبوب ...</td>
-                    <td>1399/11/11</td>
-                    <td>
-                        <a href="" class="mlg-15" title="">حذف</a>
-                        <a href="" target="_blank" class="mlg-15" title="">مشاهده</a>
-                        <a href="{{ route('posts.edit', 1) }}" class="mlg-15" title="">ویرایش</a>
-                    </td>
-                </tr>
-
-
+                @foreach($posts as $post)
+                    <tr role="row" class="">
+                        <td>{{ $post->id }}</td>
+                        <td>{{ $post->title }}</td>
+                        <td>{{ $post->user->name }}</td>
+                        <td>{{ $post->getCreatedAtInJalali() }}</td>
+                        <td>
+                            <a href="{{ route('posts.destroy', $post->id) }}"
+                               onclick="destroyPost(event, {{$post->id}})" class="mlg-15" title="">حذف</a>
+                            <a href="" target="_blank" class="mlg-15" title="">مشاهده</a>
+                            <a href="{{ route('posts.edit', $post->id) }}" class="mlg-15" title="">ویرایش</a>
+                            <form action="{{ route('posts.destroy', $post->id) }}" method="POST"
+                                  id="destroy-post-{{ $post->id }}">
+                                @csrf
+                                @method('delete')
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
+            {{ $posts->links() }}
         </div>
     </div>
+    <x-slot name="scripts">
+        <script>
+            function destroyPost(event, id) {
+                event.preventDefault();
+                document.getElementById('destroy-post-' + id).submit();
+
+            }
+        </script>
+    </x-slot>
 </x-panel-layout>
