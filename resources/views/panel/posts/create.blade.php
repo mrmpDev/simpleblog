@@ -27,7 +27,7 @@
                     @enderror
                     <p>دسته بندی های مقاله</p>
                     <ul class="tags">
-                        <li class="tagAdd taglst">
+                        <li class="tagAdd taglist">
                             <input type="text" id="search-field">
                         </li>
                     </ul>

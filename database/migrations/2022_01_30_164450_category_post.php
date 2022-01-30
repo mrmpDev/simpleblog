@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostsTable extends Migration
+class CategoryPost extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,18 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('category_post', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('slug')->unique();
-            $table->string('banner');
-            $table->longText('content');
-            $table->foreignId('user_id')
+            $table->foreignId('category_id')
                 ->constrained()
                 ->onUpdate('CASCADE')
                 ->onDelete('CASCADE');
+
+            $table->foreignId('post_id')
+                ->constrained()
+                ->onUpdate('CASCADE')
+                ->onDelete('CASCADE');
+
             $table->timestamps();
         });
     }
@@ -34,6 +36,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        //
     }
 }
