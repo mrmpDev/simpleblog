@@ -176,6 +176,6 @@
         document.getElementById('logout-form').submit();
     }
 </script>
-
+{{ $scripts ?? '' }}
 </body>
 </html>
