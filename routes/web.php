@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\Panel\CategoryController;
 use App\Http\Controllers\Panel\CommentController;
 use App\Http\Controllers\Panel\DashboardController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\Panel\EditorUpoadeController;
 use App\Http\Controllers\Panel\PostController;
 use App\Http\Controllers\Panel\ProfileController;
 use App\Http\Controllers\Panel\UserController;
+use App\Http\Controllers\ShowPostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,15 +22,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('landing');
-})->name('landing');
+Route::get('/', [LandingController::class, 'index'])->name('landing');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
-Route::get('/post/{id}', function ($id) {
-    return view('post');
-})->name('post.show');
+Route::get('/post/{post:slug}', [ShowPostController::class, 'show'])->name('post.show');
 
 Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile');
 Route::put('/profile', [ProfileController::class, 'update'])->middleware('auth')->name('profile.update');

@@ -43,6 +43,11 @@ class Post extends Model
     {
         return verta($this->created_at)->format('Y/m/d');
     }
+
+    public function getBannereUrl()
+    {
+        return asset('images/banners/'.$this->banner);
+    }
 }
 
 

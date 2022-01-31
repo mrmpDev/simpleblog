@@ -115,6 +115,7 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
+
         $categoryIds = Category::whereIn('name', $request->categories)->get()->pluck('id')->toArray();
 
         if (count($categoryIds) < 1) {

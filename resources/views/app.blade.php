@@ -11,9 +11,9 @@
     <meta name="keywords"
           content="آموزش طراحی سایت,آموزش برنامه نویسی,طراحی وب,ساخت وب سایت,آموزش git,آموزش لاراول,آموزش php,آموزش react,آموزش پی اچ پی,آموزش laravel,آموزش جاوا اسکریپت,آموزش ساخت وب سایت,آموزش mvc,آموزش React Native,بلاگینی , بلاگینی">
     <link rel="canonical" href="https://mrmp.ir"/>
-    <link rel="stylesheet" href="{{ asset('blog/css/fonts.css') }}">
-    <link rel="stylesheet" href="{{ asset('blog/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('blog/css/responsive.css') }}" media="(max-width:991px)">
+    <link rel="stylesheet" href="{{ asset('/blog/css/fonts.css') }}">
+    <link rel="stylesheet" href="{{ asset('/blog/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/blog/css/responsive.css') }}" media="(max-width:991px)">
     <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/css/swiper.min.css">-->
 </head>
 <body>
