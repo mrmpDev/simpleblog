@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Panel\CategoryController;
+use App\Http\Controllers\Panel\CommentController;
 use App\Http\Controllers\Panel\EditorUpoadeController;
 use App\Http\Controllers\Panel\PostController;
 use App\Http\Controllers\Panel\UserController;
@@ -37,7 +37,9 @@ Route::get('/profile', function () {
 Route::middleware(['auth', 'admin'])->prefix('/panel')->group(function () {
     Route::resource('/users', UserController::class)->except(['show']);
     Route::resource('/categories', CategoryController::class)->except(['show', 'create']);
-    Route::get('/comments', [CommentController::class, 'index'],)->name('comments.index');
+    Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+    Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
 });
 Route::middleware(['auth', 'author'])->prefix('/panel')->group(function () {
     Route::resource('/posts', PostController::class)->except(['show']);
