@@ -710,7 +710,7 @@ textarea {
     width: 122px;
     height: 122px;
     cursor: pointer;
-    margin: 15px auto 50px;
+    margin: 15px auto 80px;
     border-radius: 50%;
 }
 
@@ -745,12 +745,6 @@ textarea {
     margin-top: 10px;
     font-size: 15px;
     margin-right: -6px;
-}
-
-.profile__name_and_role {
-    width: 100%;
-    margin:auto;
-    font-size: 15px;
 }
 
 .box__camera.default__avatar {
@@ -1868,7 +1862,8 @@ span.tagRemove:hover {
     border-radius: 2px;
     font-size: 14px;
 }
-.notification__box{
+
+.notification__box {
     background: #fff;
     border: 2px solid #e2e2e2;
     padding: 20px;
@@ -1885,8 +1880,8 @@ span.tagRemove:hover {
     padding: 15px 0;
 }
 
-.error_message {
-    text-align: right;
-    color: #D8000C;
+.error {
     margin-bottom: 1rem;
+    color: #D8000C;
+    text-align: right;
 }
