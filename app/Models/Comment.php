@@ -9,7 +9,7 @@ class Comment extends Model
 {
     use HasFactory;
 
-    protected $with = ['replies'];
+    protected $with = ['approvedReplies'];
 
     protected $fillable = [
         'content',
@@ -38,6 +38,11 @@ class Comment extends Model
     public function replies()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function approvedReplies()
+    {
+        return $this->replies()->where('is_approved', true);
     }
 
     public function getStatusInFarsi()

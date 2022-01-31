@@ -21,9 +21,9 @@
                 {{ $comment->content }}
             </p>
         </div>
-        @if($comment->replies->count() > 0)
+        @if($comment->approvedReplies->count() > 0)
             <div class="comments__subset">
-                @foreach($comment->replies as $reply)
+                @foreach($comment->approvedReplies as $reply)
                     @include('comments.comment', ['comment' => $reply])
                 @endforeach
             </div>

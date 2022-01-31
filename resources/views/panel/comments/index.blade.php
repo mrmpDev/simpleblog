@@ -69,9 +69,9 @@
                         </td>
                     </tr>
                 @endforeach
-
                 </tbody>
             </table>
+            {{ $comments->appends(request()->query())->links() }}
         </div>
     </div>
 
