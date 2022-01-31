@@ -11,11 +11,11 @@ class CommentController extends Controller
     public function index(Request $request)
     {
         if (isset($request->approved)) {
-            $comments = Comment::where('is_approved', !!$request->approved)->with([
+            $comments = Comment::where('is_approved', !!$request->approved)->orderBy('id', 'desc')->with([
                 'user', 'post'
             ])->withCount('replies')->paginate();
         } else {
-            $comments = Comment::with(['user', 'post'])->withCount('replies')->paginate();
+            $comments = Comment::with(['user', 'post'])->withCount('replies')->orderBy('id', 'desc')->paginate();
         }
 
         return view('panel.comments.index', compact('comments'));
