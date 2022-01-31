@@ -7,10 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>وبلاگ {{ $title ?? '' }}</title>
     <meta name="description"
-          content="بلاگینی وبسایت آموزش برنامه نویسی وب و موبایل ، جاوااسکریپت ، لاراول ، react ، آموزش node js با مجرب ترین مدرسین">
+          content="وب آموز وبسایت آموزش برنامه نویسی وب و موبایل ، جاوااسکریپت ، لاراول ، react ، آموزش node js با مجرب ترین مدرسین">
     <meta name="keywords"
-          content="آموزش طراحی سایت,آموزش برنامه نویسی,طراحی وب,ساخت وب سایت,آموزش git,آموزش لاراول,آموزش php,آموزش react,آموزش پی اچ پی,آموزش laravel,آموزش جاوا اسکریپت,آموزش ساخت وب سایت,آموزش mvc,آموزش React Native,بلاگینی , بلاگینی">
-    <link rel="canonical" href="https://mrmp.ir"/>
+          content="آموزش طراحی سایت,آموزش برنامه نویسی,طراحی وب,ساخت وب سایت,آموزش git,آموزش لاراول,آموزش php,آموزش react,آموزش پی اچ پی,آموزش laravel,آموزش جاوا اسکریپت,آموزش ساخت وب سایت,آموزش mvc,آموزش React Native,وب آموز , وب اموز">
+    <link rel="canonical" href="https://webamooz.net"/>
     <link rel="stylesheet" href="{{ asset('/blog/css/fonts.css') }}">
     <link rel="stylesheet" href="{{ asset('/blog/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('/blog/panel/css/style.css') }}">
@@ -76,36 +76,18 @@
         <div class="container container--nav">
             <ul class="nav__ul">
                 <li class="nav__item"><a href="#" class="nav__link">صفحه اصلی</a></li>
-                <li class="nav__item nav__item--has-sub"><a href="#" class="nav__link">برنامه نویسی</a>
-                    <div class="nav__sub">
-                        <div class="container d-flex item-center flex-wrap container--nav">
-                            <a href="" class="nav__link">لینک یک </a>
-                            <a href="" class="nav__link">php</a>
-                            <a href="" class="nav__link">لینک سه</a>
-                            <a href="" class="nav__link">php</a>
+
+                @foreach($categories as $category)
+                    <li class="nav__item nav__item--has-sub"><a href="#" class="nav__link">{{ $category->name }}</a>
+                        <div class="nav__sub">
+                            <div class="container d-flex item-center flex-wrap container--nav">
+                                @foreach($category->children as $childCategory)
+                                    <a href="" class="nav__link">{{ $childCategory->name }}</a>
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li class="nav__item nav__item--has-sub"><a href="#" class="nav__link">هک و امنیت</a>
-                    <div class="nav__sub">
-                        <div class="container d-flex item-center flex-wrap container--nav">
-                            <a href="" class="nav__link">لینک یک </a>
-                            <a href="" class="nav__link">c++</a>
-                            <a href="" class="nav__link">لینک سه</a>
-                            <!--                            <a href="" class="nav__sub-link">php</a>-->
-                        </div>
-                    </div>
-                </li>
-                <li class="nav__item nav__item--has-sub"><a href="#" class="nav__link">هک و امنیت</a>
-                    <div class="nav__sub">
-                        <div class="container d-flex item-center flex-wrap container--nav">
-                            <a href="" class="nav__link">لینک یک </a>
-                            <a href="" class="nav__link">c++</a>
-                            <a href="" class="nav__link">لینک سه</a>
-                            <!--                            <a href="" class="nav__sub-link">php</a>-->
-                        </div>
-                    </div>
-                </li>
+                    </li>
+                @endforeach
                 <li class="nav__item"><a href="#" class="nav__link">درباره ما</a></li>
                 <li class="nav__item"><a href="#" class="nav__link">تماس باما</a></li>
             </ul>
@@ -130,7 +112,7 @@
         <div class="footer__hr"></div>
         <div class="footer__about">
             <p class="footer__txt">
-                بلاگینی مرجعی تخصصی برای یادگیری طراحی و برنامه نویسی وب و موبایل است. ما در بلاگینی با بهره گیری از
+                وب اموز مرجعی تخصصی برای یادگیری طراحی و برنامه نویسی وب و موبایل است. ما در وب اموز با بهره گیری از
                 نیروهای متخصص، باتجربه تمام تلاش خود را برای تهیه و تولید آموزش های با کیفیت و کامل و حرفه ای انجام
                 می دهیم. باور ما اینست که کاربران ایرانی لایق بهترین ها هستند و باید بهترین و بروزترین فیلم های
                 آموزشی، در اختیار آنها قرار بگیرد تا بتوانند به سرعت پیشرفت کنند و جزء بهترین ها شوند. امید است که
@@ -141,7 +123,7 @@
     </div>
     <div class="footer__webamooz">
         طراحی و توسعه با لاراول توسط تیم
-        <a class="footer__copy" href="https://mrmp.ir">بلاگینی</a>
+        <a class="footer__copy" href="https://webamooz.net">وب آموز</a>
         © 1399
     </div>
     <!--    <div class="footer-info color-444">-->
@@ -161,7 +143,7 @@
     <!--            <div class="f-about">-->
     <!--                <div class="col-8 margin-bottom-15">-->
     <!--                    <p>-->
-    <!--                        بلاگینی مرجعی تخصصی برای یادگیری طراحی و برنامه نویسی وب و موبایل است. ما در بلاگینی با بهره-->
+    <!--                        وب اموز مرجعی تخصصی برای یادگیری طراحی و برنامه نویسی وب و موبایل است. ما در وب اموز با بهره-->
     <!--                        گیری از-->
     <!--                        نیروهای متخصص، باتجربه تمام تلاش خود را برای تهیه و تولید آموزش های با کیفیت و کامل و حرفه ای-->
     <!--                        انجام-->
@@ -177,7 +159,7 @@
     <!--        </div>-->
     <!--        <div class="webamooz">-->
     <!--            طراحی و توسعه با لاراول توسط تیم-->
-    <!--            <a href="https://mrmp.ir">بلاگینی</a>-->
+    <!--            <a href="https://webamooz.net">وب آموز</a>-->
     <!--            © 1399-->
     <!--        </div>-->
     <!--    </div>-->
