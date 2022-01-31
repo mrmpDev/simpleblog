@@ -3,4 +3,9 @@
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="JSX" />
   </component>
+  <component name="com.itcodebox.notebooks.projectservice.ProjectUIState">
+    <option name="selectedNotebookId" value="3" />
+    <option name="selectedChapterId" value="3" />
+    <option name="selectedNoteId" value="3" />
+  </component>
 </project>
