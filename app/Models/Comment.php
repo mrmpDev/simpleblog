@@ -9,6 +9,8 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $with = ['replies'];
+
     protected $fillable = [
         'content',
         'is_approved',
