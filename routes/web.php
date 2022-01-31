@@ -32,6 +32,7 @@ Route::get('/post/{id}', function ($id) {
 })->name('post.show');
 
 Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile');
+Route::put('/profile', [ProfileController::class, 'update'])->middleware('auth')->name('profile.update');
 
 Route::middleware(['auth', 'admin'])->prefix('/panel')->group(function () {
     Route::resource('/users', UserController::class)->except(['show']);
