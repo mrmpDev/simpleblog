@@ -13,7 +13,8 @@
                             <span class="comments_date">{{ $comment->created_at->diffForHumans() }}</span>
                         </div>
                     </div>
-                    <a href="#comments" class="btn btn--blue btn--shadow-blue btn--comments-reply">ارسال پاسخ</a>
+                    <a href="#comments" onclick="setReplyValue({{ $comment->id }})"
+                       class="btn btn--blue btn--shadow-blue btn--comments-reply">ارسال پاسخ</a>
                 </div>
             </div>
             <p class="comments__body">
