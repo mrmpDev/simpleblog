@@ -9,6 +9,8 @@ use App\Http\Controllers\Panel\PostController;
 use App\Http\Controllers\Panel\ProfileController;
 use App\Http\Controllers\Panel\UserController;
 use App\Http\Controllers\ShowPostController;
+use App\Http\Controllers\CommentController as StoreCommentController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +29,7 @@ Route::get('/', [LandingController::class, 'index'])->name('landing');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 Route::get('/post/{post:slug}', [ShowPostController::class, 'show'])->name('post.show');
+Route::post('/comment', [StoreCommentController::class, 'store'])->name('comment.store');
 
 Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile');
 Route::put('/profile', [ProfileController::class, 'update'])->middleware('auth')->name('profile.update');
@@ -38,6 +41,7 @@ Route::middleware(['auth', 'admin'])->prefix('/panel')->group(function () {
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
     Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
 });
+
 Route::middleware(['auth', 'author'])->prefix('/panel')->group(function () {
     Route::resource('/posts', PostController::class)->except(['show']);
     Route::post('/editor/upload', [EditorUpoadeController::class, 'upload'])->name('editor-upload');
