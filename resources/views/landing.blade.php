@@ -27,6 +27,6 @@
                 @endforeach
             </div>
         </article>
-        {{ $posts->links() }}
+        {{ $posts->appends(request()->query())->links() }}
     </main>
 </x-app-layout>
