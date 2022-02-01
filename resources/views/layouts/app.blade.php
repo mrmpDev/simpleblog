@@ -77,17 +77,21 @@
             <ul class="nav__ul">
                 <li class="nav__item"><a href="{{ route('landing') }}" class="nav__link">صفحه اصلی</a></li>
 
-                @foreach($categories as $category)
-                    <li class="nav__item nav__item--has-sub"><a href="#" class="nav__link">{{ $category->name }}</a>
+                @forelse($categories as $category)
+                    <li class="nav__item nav__item--has-sub"><a href="{{ route('category.show', $category->slug) }}"
+                                                                class="nav__link">{{ $category->name }}</a>
                         <div class="nav__sub">
                             <div class="container d-flex item-center flex-wrap container--nav">
                                 @foreach($category->children as $childCategory)
-                                    <a href="" class="nav__link">{{ $childCategory->name }}</a>
+                                    <a href="{{route('category.show', $childCategory->slug)}}"
+                                       class="nav__link">{{ $childCategory->name }}</a>
                                 @endforeach
                             </div>
                         </div>
                     </li>
-                @endforeach
+                @empty
+                    <p>هیچ مقاله ای پیدا نشد</p>
+                @endforelse
                 <li class="nav__item"><a href="#" class="nav__link">درباره ما</a></li>
                 <li class="nav__item"><a href="#" class="nav__link">تماس باما</a></li>
             </ul>

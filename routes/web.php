@@ -9,6 +9,7 @@ use App\Http\Controllers\Panel\EditorUpoadeController;
 use App\Http\Controllers\Panel\PostController;
 use App\Http\Controllers\Panel\ProfileController;
 use App\Http\Controllers\Panel\UserController;
+use App\Http\Controllers\ShowPostCategoryController;
 use App\Http\Controllers\ShowPostController;
 use App\Http\Controllers\CommentController as StoreCommentController;
 
@@ -31,7 +32,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 
 
 Route::get('/post/{post:slug}', [ShowPostController::class, 'show'])->name('post.show');
-Route::post('/comment', [StoreCommentController::class, 'store'])->name('comment.store');
+Route::get('/category/{category:slug}', [ShowPostCategoryController::class, 'show'])->name('category.show');
+Route::middleware(['auth'])->post('/comment', [StoreCommentController::class, 'store'])->name('comment.store');
 Route::middleware(['auth', 'throttle:like'])->post('/like/{post:slug}',
     [LikePostController::class, 'store'])->name('like.post');
 
