@@ -13,7 +13,7 @@
     <link rel="canonical" href="https://webamooz.net"/>
     <link rel="stylesheet" href="{{ asset('/blog/css/fonts.css') }}">
     <link rel="stylesheet" href="{{ asset('/blog/css/style.css') }}">
-{{--    <link rel="stylesheet" href="{{ asset('/blog/panel/css/style.css') }}">--}}
+<!-- <link rel="stylesheet" href="{{ asset('/blog/panel/css/style.css') }}"> -->
     <link rel="stylesheet" href="{{ asset('/blog/css/responsive.css') }}" media="(max-width:991px)">
     <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/css/swiper.min.css">-->
 </head>
@@ -75,7 +75,7 @@
         </div>
         <div class="container container--nav">
             <ul class="nav__ul">
-                <li class="nav__item"><a href="#" class="nav__link">صفحه اصلی</a></li>
+                <li class="nav__item"><a href="{{ route('landing') }}" class="nav__link">صفحه اصلی</a></li>
 
                 @foreach($categories as $category)
                     <li class="nav__item nav__item--has-sub"><a href="#" class="nav__link">{{ $category->name }}</a>
