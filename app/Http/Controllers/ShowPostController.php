@@ -15,7 +15,7 @@ class ShowPostController extends Controller
                     ->where('is_approved', true)
                     ->orderBy('id', 'desc')->get();
             }
-        ])->loadCount('comments');
+        ])->loadCount('comments')->append('is_user_liked');
         return view('post', compact('post'));
     }
 }

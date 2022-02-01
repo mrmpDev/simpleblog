@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0;">
 
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>وبلاگ {{$title ?? ''}}</title>
+    <title>وبلاگ {{ $title ?? '' }}</title>
     <meta name="description"
           content="بلاگینی وبسایت آموزش برنامه نویسی وب و موبایل ، جاوااسکریپت ، لاراول ، react ، آموزش node js با مجرب ترین مدرسین">
     <meta name="keywords"
@@ -165,8 +165,8 @@
     <!--    </div>-->
 </footer>
 <div class="overlay"></div>
-<script src="{{ asset('blog/js/jquery-3.4.1.min.js') }}"></script>
-<script src="{{ asset('blog/js/js.js') }}"></script>
+<script src="{{ asset('/blog/js/jquery-3.4.1.min.js') }}"></script>
+<script src="{{ asset('/blog/js/js.js') }}"></script>
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.min.js"></script>-->
 
 </body>

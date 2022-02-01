@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\LikePostController;
 use App\Http\Controllers\Panel\CategoryController;
 use App\Http\Controllers\Panel\CommentController;
 use App\Http\Controllers\Panel\DashboardController;
@@ -28,11 +29,16 @@ Route::get('/', [LandingController::class, 'index'])->name('landing');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
+
 Route::get('/post/{post:slug}', [ShowPostController::class, 'show'])->name('post.show');
 Route::post('/comment', [StoreCommentController::class, 'store'])->name('comment.store');
+Route::middleware(['auth', 'throttle:like'])->post('/like/{post:slug}',
+    [LikePostController::class, 'store'])->name('like.post');
+
 
 Route::get('/profile', [ProfileController::class, 'show'])->middleware('auth')->name('profile');
 Route::put('/profile', [ProfileController::class, 'update'])->middleware('auth')->name('profile.update');
+
 
 Route::middleware(['auth', 'admin'])->prefix('/panel')->group(function () {
     Route::resource('/users', UserController::class)->except(['show']);
@@ -41,6 +47,7 @@ Route::middleware(['auth', 'admin'])->prefix('/panel')->group(function () {
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
     Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
 });
+
 
 Route::middleware(['auth', 'author'])->prefix('/panel')->group(function () {
     Route::resource('/posts', PostController::class)->except(['show']);

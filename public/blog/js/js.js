@@ -26,9 +26,7 @@ $(window).scroll(function () {
         $('.scroll-top').fadeOut()
     }
 })
-$(".single-page__like").on("click", function () {
-    $(this).toggleClass("single-page__like--is-active");
-})
+
 
 $(document).ready(function(){
     $(".scroll-top").on("click", function () {
